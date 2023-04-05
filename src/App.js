@@ -5,46 +5,13 @@ import { Tab } from "./Q1/Tab";
 import { Welcome } from "./Q2/Welcome";
 import { DisplayFood } from "./Q3/DisplayFood";
 import { itemList } from "./Q3/itemList";
-import { useState } from "react";
-
-const todoItems = [
-  { id: 1, task: "Writing 1-page poem", isDone: true },
-  { id: 2, task: "Gym", isDone: false },
-  { id: 3, task: "Shopping", isDone: false },
-  { id: 4, task: "Standup call", isDone: true },
-];
-
-// function IndividualItem({ id, task, isDone }) {
-
-//   return (
-
-//   );
-// }
-
-function ToDoList({ todoItems }) {
-  const [displayList, setDisplayList] = useState(todoItems);
-
-  const buttonHandler = (index) => {
-    const newArr = displayList.filter(
-      (item) => displayList.indexOf(item) !== index
-    );
-    setDisplayList(newArr);
-  };
-
-  return (
-    <>
-      <h1>Question 4</h1>
-      <ul>
-        {displayList.map(({ id, task, isDone }, index) => (
-          <li key={id} style={{ textDecoration: isDone ? "line-through" : "" }}>
-            {task}
-            <button onClick={() => buttonHandler(index)}>X</button>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
+import { todoItems } from "./Q4/todoItems";
+import { ToDoList } from "./Q4/ToDoList";
+import { todoItems1 } from "./Q5/todoItems1";
+import { TodoList } from "./Q5/ToDoList";
+import { books } from "./Q6/books";
+import { DisplayBooks } from "./Q6/DisplayBooks";
+import { Game } from "./Q7/Game";
 
 function App() {
   return (
@@ -53,6 +20,9 @@ function App() {
       <Welcome />
       <DisplayFood food={itemList} />
       <ToDoList todoItems={todoItems} />
+      <TodoList todoItems={todoItems1} />
+      <DisplayBooks books={books} />
+      <Game />
     </div>
   );
 }
