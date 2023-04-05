@@ -3,45 +3,45 @@ import "./App.css";
 import { characters } from "./Q1/characters";
 import { Tab } from "./Q1/Tab";
 import { Welcome } from "./Q2/Welcome";
+import { DisplayFood } from "./Q3/DisplayFood";
+import { itemList } from "./Q3/itemList";
 import { useState } from "react";
 
-const itemList = [
-  { id: 1, name: "Apple", category: "Fruit" },
-  { id: 2, name: "Carrot", category: "Vegetable" },
-  { id: 3, name: "Banana", category: "Fruit" },
-  { id: 4, name: "Broccoli", category: "Vegetable" },
+const todoItems = [
+  { id: 1, task: "Writing 1-page poem", isDone: true },
+  { id: 2, task: "Gym", isDone: false },
+  { id: 3, task: "Shopping", isDone: false },
+  { id: 4, task: "Standup call", isDone: true },
 ];
-function DisplayFood({ food }) {
-  const [foodSelected, setFoodSelected] = useState();
 
-  const buttonHandler = (event) => {
-    const selectedFood = event.target.value;
-    console.log(selectedFood);
-    setFoodSelected(() => selectedFood);
+// function IndividualItem({ id, task, isDone }) {
+
+//   return (
+
+//   );
+// }
+
+function ToDoList({ todoItems }) {
+  const [displayList, setDisplayList] = useState(todoItems);
+
+  const buttonHandler = (index) => {
+    const newArr = displayList.filter(
+      (item) => displayList.indexOf(item) !== index
+    );
+    setDisplayList(newArr);
   };
 
-  const displayFoodList = foodSelected
-    ? food.filter((item) => item.category === foodSelected)
-    : food;
-  console.log(displayFoodList);
   return (
     <>
-      <h1>Question 3</h1>
-      <button value={undefined} onClick={buttonHandler}>
-        All
-      </button>
-      <button value="Fruit" onClick={buttonHandler}>
-        Fruits
-      </button>
-      <button value="Vegetable" onClick={buttonHandler}>
-        Vegetables
-      </button>
-      {displayFoodList.map(({ id, name, category }) => (
-        <div key={id}>
-          <h3>{name}</h3>
-          <p>{category}</p>
-        </div>
-      ))}
+      <h1>Question 4</h1>
+      <ul>
+        {displayList.map(({ id, task, isDone }, index) => (
+          <li key={id} style={{ textDecoration: isDone ? "line-through" : "" }}>
+            {task}
+            <button onClick={() => buttonHandler(index)}>X</button>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
@@ -52,6 +52,7 @@ function App() {
       <Tab characters={characters} />
       <Welcome />
       <DisplayFood food={itemList} />
+      <ToDoList todoItems={todoItems} />
     </div>
   );
 }
