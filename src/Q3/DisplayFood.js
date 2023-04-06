@@ -5,7 +5,7 @@ export function DisplayFood({ food }) {
 
   const buttonHandler = (event) => {
     const selectedFood = event.target.value;
-    // console.log(typeof selectedFood);
+    // console.log( selectedFood);
     setFoodSelected(selectedFood);
   };
 
@@ -31,9 +31,7 @@ export function DisplayFood({ food }) {
       </button>
       {displayFoodList.map(({ id, name, category }) => (
         <div key={id}>
-          <h3
-            style={{ color: category === "Vegetable" ? "green" : "orange" }}
-          >
+          <h3 style={{ color: category === "Vegetable" ? "green" : "orange" }}>
             {name}
           </h3>
           <p>{category}</p>
