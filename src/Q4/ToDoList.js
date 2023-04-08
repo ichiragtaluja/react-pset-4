@@ -1,9 +1,5 @@
 import { useState } from "react";
 
-// function IndividualItem({ id, task, isDone }) {
-//   return (
-//   );
-// }
 export function ToDoList({ todoItems }) {
   const [displayList, setDisplayList] = useState(todoItems);
 
